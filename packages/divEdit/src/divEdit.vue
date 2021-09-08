@@ -1,15 +1,9 @@
-<!--
- * @Descripttion:  可输入的div实现v-model
- * @Author: penglu
- * @Date: 2021-08-04 12:17:09
--->
-
 <template >
   <div class="edit-wrapper">
     <div
       class="edit-div"
       :contenteditable="canEdit"
-      data-placeholder="请输入群发消息..."
+      :data-placeholder="placeholder"
       @focus="editFocus"
       @blur="isLocked = false"
       @input="changeText"
@@ -32,6 +26,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    placeholder:{
+      type:String,
+      default:''
+    }
   },
   data() {
     return {

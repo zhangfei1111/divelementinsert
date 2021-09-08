@@ -4,6 +4,8 @@
             Vue.use(MyDivInsert)
 2.组件使用： <my-div-insert @getText="getText" />
 3.getText:  方法抛出2种格式值供参考
+4.realContent 赋初始值
+5.placeholder 提示
 ```
 ## Project setup
 ```

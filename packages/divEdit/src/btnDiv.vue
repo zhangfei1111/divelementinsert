@@ -8,6 +8,7 @@
       ref="divRef"
       :canEdit="powerFlag"
       @input="editDivInput"
+      :placeholder="placeholder"
     />
   </div>
 </template>
@@ -28,10 +29,26 @@ export default {
         return "icon-alia-Customernickname";
       },
     },
+<<<<<<< HEAD
+    realContent: {
+      type: String,
+      default() {
+        return " ";
+      },
+    },
+    placeholder: {
+      type: String,
+      default: "请输入内容...",
+    },
+  },
+  data() {
+    return {
+=======
   },
   data() {
     return {
       realContent: " ",
+>>>>>>> 38ac2ca4886808ce99cd0ddeb452f13e6af87821
       divData: {
         val: "",
         html: "",
@@ -43,7 +60,11 @@ export default {
     editDivInput(val) {
       this.divData.val = val;
       this.divData.html = this.$refs.divRef.$refs.editDiv.innerHTML;
+<<<<<<< HEAD
+      this.$emit("getText", this.divData);
+=======
       this.$emit('getText',this.divData)
+>>>>>>> 38ac2ca4886808ce99cd0ddeb452f13e6af87821
     },
     // 向光标处塞入内容
     insert() {
@@ -81,7 +102,11 @@ export default {
         document.selection.createRange().pasteHTML(html);
       }
       this.divData.html = editDom.innerHTML;
+<<<<<<< HEAD
+      this.$emit("getText", this.divData);
+=======
       this.$emit('getText',this.divData)
+>>>>>>> 38ac2ca4886808ce99cd0ddeb452f13e6af87821
     },
   },
 };
