@@ -4,7 +4,7 @@
       >【插入客户昵称】</el-button
     >
     <div-edit
-      v-model="realContent"
+      v-model="modelValue"
       ref="divRef"
       :canEdit="powerFlag"
       @input="editDivInput"
@@ -38,6 +38,14 @@ export default {
     placeholder: {
       type: String,
       default: "请输入内容...",
+    },
+  },
+  computed: {
+    modelValue: {
+      get() {
+        return this.realContent;
+      },
+      set() {},
     },
   },
   data() {

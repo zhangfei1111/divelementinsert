@@ -1,10 +1,15 @@
 {
   "name": "divelementinsert",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "private": false,
   "description": "基于element,sass开发,点击按钮根据光标插入客户昵称，客户昵称供后端替换，",
   "author": "张飞",
-  "main": "packages/index.js",
+  "main": "lib/zf_div_edit.common.js",
+  "style": "lib/zf_div_edit.css",
+  "files": [
+    "lib",
+    "packages"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
