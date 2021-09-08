@@ -26,10 +26,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    placeholder:{
-      type:String,
-      default:''
-    }
+    placeholder: {
+      type: String,
+      default: "",
+    },
   },
   data() {
     return {
