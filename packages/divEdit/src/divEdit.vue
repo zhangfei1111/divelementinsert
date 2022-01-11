@@ -1,9 +1,14 @@
-<template >
+<!--
+ * @Author: 张飞
+ * @Date: 2021-09-08 13:51:06
+ * @Description: 
+-->
+<template>
   <div class="edit-wrapper">
     <div
       class="edit-div"
       :contenteditable="canEdit"
-      :data-placeholder="placeholder"
+      data-placeholder="请输入群发消息..."
       @focus="editFocus"
       @blur="isLocked = false"
       @input="changeText"
@@ -13,9 +18,15 @@
     ></div>
   </div>
 </template>
-<script >
+<script>
 export default {
   name: "divEdit",
+  data() {
+    return {
+      innerText: this.value,
+      isLocked: false,
+    };
+  },
   props: {
     value: {
       type: String,
@@ -26,18 +37,8 @@ export default {
       type: Boolean,
       default: true,
     },
-    placeholder: {
-      type: String,
-      default: "",
-    },
   },
-  data() {
-    return {
-      innerText: this.value,
-      isLocked: false,
-      count: 0,
-    };
-  },
+  created() {},
   watch: {
     value() {
       if (!this.isLocked || !this.innerText) {
@@ -46,8 +47,25 @@ export default {
       }
     },
   },
+  mounted() {
+    const editDom = this.$refs.editDiv;
+    editDom.addEventListener("keydown", function (e) {
+      console.log(e);
+      // Check for a backspace && delete
+      if (e.which === 8 || e.which === 46) {
+        const s = window.getSelection();
+        const r = s.getRangeAt(0);
+        const el = r.startContainer.parentElement;
+        if (el.classList.contains("msg-value-blue")) {
+          e.preventDefault();
+          el.remove();
+        }
+      }
+    });
+  },
   methods: {
-    editFocus() {
+    editFocus(val) {
+      console.log("editFocus:", val);
       this.isLocked = true;
     },
     changeText() {
@@ -124,8 +142,7 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .edit-wrapper {
   width: 100%;
   height: 100%;
@@ -139,6 +156,7 @@ export default {
     user-select: text;
     white-space: pre-wrap;
     text-align: left;
+    font-size: 12px;
     &:empty:before {
       content: attr(data-placeholder);
       color: #bbb;
@@ -147,8 +165,12 @@ export default {
     &:focus:before {
       content: none;
     }
+
     // 回车无div
     -webkit-user-modify: read-write-plaintext-only;
+    // span{
+    //   display: inline-block;
+    // }
   }
   .show-limit {
     position: absolute;
